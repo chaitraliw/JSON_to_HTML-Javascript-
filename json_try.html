@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style type="text/css">
+	
+table {
+    border-collapse: separate;
+    empty-cells: hide;
+}
+
+</style>
+
+
+<script type="text/javascript">
+
+
+	
+	function textarea(){
+		var table = document.getElementById("myTable");
+		var text_json = document.getElementById("textarea1").value;
+		console.log(text_json)
+		var text_parse = JSON.parse(text_json);
+		 var r = 2;
+
+		for(var key in text_parse)
+		{
+			if(typeof(key) === Object) 
+			{
+				for(var childkey in text_parse)
+				{
+					if(typeof(childkey) === Object)
+					{
+						return myFunction("key","childkey");
+					}
+				}
+			}
+			else
+			{
+				var row = table.insertRow(r);
+    			var cell1 = row.insertCell(0);
+    			var cell2 = row.insertCell(1);
+    			cell1.innerHTML = key;
+    			cell2.innerHTML = text_parse[key];
+    			r++;
+			}
+		}
+	}
+
+</script>
+
+
+
+
+
+</head>
+
+
+
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        <textarea rows="15" cols="50" id="textarea1" style="resize: none; margin-top: 30px"></textarea></div>
+
+        <div class="col-md-6">
+        <table class="table-bordered" style="float: right; margin-top: 30px" id="myTable">
+        	 <thead>
+      				<tr>
+        				<th style="width: 5% text-align: center !important;" class="text-center">JSON Key,Values</th>	
+     				 </tr>
+     				 <tr>
+     				 	<th style="width: 5%">Key</th>
+     				 	<th style="width: 5%">Values</th>
+     				 </tr>
+   			 </thead>
+   			 <!--<tbody>
+   			 	<tr class="ro">
+   			 		<td>A</td>
+   			 		<td>B</td>
+   			 	</tr>
+   			 	<tr>
+   			 		<td>C</td>
+   			 		<td>D</td>
+   			 	</tr>
+   			 	<tr>
+   			 		<td>E</td>
+   			 		<td>F</td>
+   			 	</tr>
+   			 	<tr>
+   			 		<td>G</td>
+   			 		<td>H</td>
+   			 	</tr>
+   			 </tbody>-->
+        </table>
+
+        </div>
+
+        <div class="row form-group">
+            <div class="col-sm-4 center-block">
+            </div>
+            <div class="col-sm-8 text-center">
+               <button type="button" class="btn btn-primary bg-primary" name="js" style="margin-top: 30px" onclick="textarea()">
+                <strong>JSON-To-Html-Table</strong></button>
+                </form>
+            </div>
+         </div>
+
+	</div>
+</body>
